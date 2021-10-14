@@ -9,11 +9,13 @@ on:
 jobs:
   build_pull_request:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src/vue-actions-test
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 12
-      - run: cd ./src/vue-actions-test
       - run: npm ci
       - run: npm run build
