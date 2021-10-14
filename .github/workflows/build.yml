@@ -1,0 +1,19 @@
+name: Check if it builds
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+      - run: cd ./src/vue-actions-test
+      - run: npm ci
+      - run: npm run build
